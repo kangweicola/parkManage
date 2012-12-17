@@ -34,52 +34,52 @@ public class ParkServiceTest {
 	}
 	
     @Test
-    public void parkPlace_GetCar(){
+    public void GetCar(){
         Car car = new Car();
         Ticket proof =  parkPlaceListManager.parking(car) ;
         Assert.assertSame(car,parkPlaceListManager.getParkedCar(proof));
     }
     
     @Test    ( expected = NoCarException.class)
-    public void parkPlace_GetCar_NoThisCar() {
+    public void GetCar_NoThisCar() {
         Ticket proof =  parkPlaceListManager.parking( new Car()) ;
         parkPlaceListManager.getParkedCar(proof);
         parkPlaceListManager.getParkedCar(proof);
     }
     @Test
-    public void parkPlace_getAvailableNum_after_park()  {
+    public void getAvailableNum_after_park()  {
         parkPlaceListManager.parking( new Car()) ;
         parkPlaceListManager.parking( new Car()) ;
         Assert.assertEquals(Integer.valueOf(44),parkPlaceListManager.getAvailableParkNum());
     }
     @Test
-    public void parkPlace_getAvailableNum_after_park_full()  {
+    public void getAvailableNum_after_park_full()  {
     	for(int i=0;i<46;i++){
     		 parkPlaceListManager.parking( new Car()) ;
     	}
         Assert.assertEquals(Integer.valueOf(0),parkPlaceListManager.getAvailableParkNum());
     }
     @Test
-    public void parkPlace_getAvailableNum(){
+    public void getAvailableNum(){
     	Assert.assertEquals(Integer.valueOf(46),parkPlaceListManager.getAvailableParkNum());
     }
     @Test
-    public void parkPlace_getMaxParkingNum(){
+    public void getMaxParkingNum(){
     	Assert.assertEquals(Integer.valueOf(46),parkPlaceListManager.getMaxParkingNum());
     }
     @Test
-    public void parkPlace_getMaxParkingNum_after_park(){
+    public void getMaxParkingNum_after_park(){
     	parkPlaceListManager.parking( new Car()) ;
         parkPlaceListManager.parking( new Car()) ;
     	Assert.assertEquals(Integer.valueOf(46),parkPlaceListManager.getMaxParkingNum());
     }
     
     @Test
-    public void parkPlace_getUsedParkPlaceCount(){
+    public void getUsedParkPlaceCount(){
     	Assert.assertEquals(Integer.valueOf(0),parkPlaceListManager.getUsedParkPlaceCount());
     }
     @Test
-    public void parkPlace_getUsedParkPlaceCount_after_park(){
+    public void getUsedParkPlaceCount_after_park(){
     	parkPlaceListManager.parking( new Car()) ;
         parkPlaceListManager.parking( new Car()) ;
         parkPlaceListManager.parking( new Car()) ;
@@ -88,29 +88,29 @@ public class ParkServiceTest {
     }
     
     @Test
-    public void parkPlace_getMaxAvailableParkPlace(){
+    public void getMaxAvailableParkPlace(){
     	Assert.assertEquals(Integer.valueOf(13),parkPlaceListManager.getMaxAvailableParkPlace().getAvailableNum());
     }
     @Test
-    public void parkPlace_getMaxAvailableParkPlace_after_park_1(){
+    public void getMaxAvailableParkPlace_after_park_1(){
     	parkPlaceListManager.parking( new Car()) ;
     	Assert.assertEquals(Integer.valueOf(12),parkPlaceListManager.getMaxAvailableParkPlace().getAvailableNum());
     }
     @Test
-    public void parkPlace_getMaxAvailableParkPlace_after_park_2(){
+    public void getMaxAvailableParkPlace_after_park_2(){
     	parkPlaceListManager.parking( new Car()) ;
     	parkPlaceListManager.parking( new Car()) ;
     	Assert.assertEquals(Integer.valueOf(12),parkPlaceListManager.getMaxAvailableParkPlace().getAvailableNum());
     }
     @Test
-    public void parkPlace_getMaxAvailableParkPlace_after_park_3(){
+    public void getMaxAvailableParkPlace_after_park_3(){
     	parkPlaceListManager.parking( new Car()) ;
     	parkPlaceListManager.parking( new Car()) ;
     	parkPlaceListManager.parking( new Car()) ;
     	Assert.assertEquals(Integer.valueOf(11),parkPlaceListManager.getMaxAvailableParkPlace().getAvailableNum());
     }
     @Test
-    public void parkPlace_getMaxAvailableParkPlace_after_park_4(){
+    public void getMaxAvailableParkPlace_after_park_4(){
     	parkPlaceListManager.parking( new Car()) ;
     	parkPlaceListManager.parking( new Car()) ;
     	parkPlaceListManager.parking( new Car()) ;
@@ -119,14 +119,14 @@ public class ParkServiceTest {
     }
     
     @Test
-	public void parkPlace_Parking_HavePlace() {
+	public void Parking_HavePlace() {
 		Car car = new Car();
 		Ticket proof = parkPlaceListManager.parking(car);
 		Assert.assertNotNull(proof);
 	}
 
 	@Test(expected = NoPlaceException.class)
-	public void parkPlace_Parking_NoPlace() {
+	public void Parking_NoPlace() {
 		for(int i=0;i<=46;i++){
 			parkPlaceListManager.parking(new Car());
 		}

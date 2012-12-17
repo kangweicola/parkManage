@@ -21,7 +21,9 @@ import org.junit.Test;
  * @author kangwei
  */
 public class ParkingManagerTest {
+	
 	private ParkingManager parkManager;
+	
 	@Before
 	public void init(){
 		List<ParkPlace> managerParkList=new ArrayList<ParkPlace>();
@@ -42,13 +44,13 @@ public class ParkingManagerTest {
 		this.parkManager=new ParkingManager(managerParkList, parkingBoys);
 	}
 	@Test
-	public void test_report(){
+	public void report(){
 		Assert.assertNotNull(parkManager.reportInfo());
 		System.out.println(parkManager.reportInfo());
 	}
 	
 	@Test
-	public void test_getParkingBoys(){
+	public void getParkingBoys(){
 		Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(parkManager.getParkingBoys().size()));
 	}
 	

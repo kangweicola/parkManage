@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * Õ£≥µÕØ≤‚ ‘¿‡
  * @author kangwei
  */
 public class ParkingBoyTest {
@@ -26,12 +27,12 @@ public class ParkingBoyTest {
 		parkBoy=new ParkingBoy(list);
 	}
 	@Test
-	public void test_getParkingRoleName(){
+	public void getParkingRoleName(){
 		Assert.assertEquals(ParkingBoy.PARKING_BOY_FLAG+parkBoy.getID(),parkBoy.getParkingRoleName());
 	}
 	
 	@Test
-	public void test_report(){
+	public void report(){
 		Assert.assertNotNull(parkBoy.reportInfo());
 		System.out.println(parkBoy.reportInfo());
 	}

@@ -16,7 +16,7 @@ import org.junit.Test;
 public class ParkPlaceTest {
 
 	@Test
-	public void parkPlace_Parking_HavePlace() {
+	public void Parking_HavePlace() {
 		ParkPlace pp = new ParkPlace(20);
 		Car car = new Car();
 		Ticket proof = pp.parking(car);
@@ -24,7 +24,7 @@ public class ParkPlaceTest {
 	}
 
 	@Test(expected = NoPlaceException.class)
-	public void parkPlace_Parking_NoPlace() {
+	public void Parking_NoPlace() {
 		ParkPlace pp = new ParkPlace(2);
 		pp.parking(new Car());
 		pp.parking(new Car());
@@ -32,7 +32,7 @@ public class ParkPlaceTest {
 	}
 
 	@Test
-	public void parkPlace_GetCar() {
+	public void GetCar() {
 		ParkPlace pp = new ParkPlace(20);
 		Car car = new Car();
 		Ticket proof = pp.parking(car);
@@ -40,7 +40,7 @@ public class ParkPlaceTest {
 	}
 
 	@Test(expected = NoCarException.class)
-	public void parkPlace_GetCar_NoThisCar() {
+	public void GetCar_NoThisCar() {
 		ParkPlace pp = new ParkPlace(20);
 		Ticket proof = pp.parking(new Car());
 		pp.getParkedCar(proof);
@@ -48,7 +48,7 @@ public class ParkPlaceTest {
 	}
 
 	@Test
-	public void parkPlace_ShowAvailableNum() {
+	public void ShowAvailableNum() {
 		int maxParkingNum = 20;
 		ParkPlace pp = new ParkPlace(maxParkingNum);
 		pp.parking(new Car());
@@ -58,7 +58,7 @@ public class ParkPlaceTest {
 	}
 	
 	@Test
-	public void parkPlace_ShowMinParkingNum() {
+	public void ShowMinParkingNum() {
 		int maxParkingNum = -20;
 		ParkPlace pp = new ParkPlace(maxParkingNum);
 		Assert.assertEquals(new Integer(2), pp
