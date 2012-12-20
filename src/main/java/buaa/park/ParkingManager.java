@@ -8,21 +8,19 @@ import main.java.buaa.exception.NoPlaceException;
 
 
 /**
- *  
+ * 停车经理类
  *@author 徐飞飞
  */
 public class ParkingManager extends Park{
 	
-	private static int ManagerID=0;
-	
-	private int id;
-	
 	private HashSet<ParkingBoy> parkingBoys;
 	
-	public ParkingManager(List<ParkPlace> parkPlaceList,HashSet<ParkingBoy> parkingBoys) {
+	private String pmName;
+	
+	public ParkingManager(List<ParkPlace> parkPlaceList,HashSet<ParkingBoy> parkingBoys,String pmName) {
 		super(parkPlaceList);
 		this.parkingBoys=parkingBoys;
-		id=(++ManagerID);
+		this.pmName=pmName;
 	}
 	
 	/**
@@ -37,8 +35,8 @@ public class ParkingManager extends Park{
 		}
 	}
 	
-	public String getParkingRoleName() {
-		return "ParkingManager_"+this.id;
+	public String getParkingManagerName() {
+		return pmName;
 	}
 	
 	public HashSet<ParkingBoy> getParkingBoys(){
@@ -47,14 +45,13 @@ public class ParkingManager extends Park{
 	
 	public String reportInfo(){
 		StringBuilder sb=new StringBuilder("");
-		sb.append("项目经理编号:"+getParkingRoleName()+"\t车位总数："+getMaxParkingNum()+"\t空位数："+getAvailableParkNum()+"\n");
-		sb.append(super.reportInfo()+"\n");
-//		sb.append("\n+++++\n");
+		sb.append("停车经理姓名:"+getParkingManagerName()+"\n");
+		sb.append("\t"+super.reportInfo()+"\n");
+		sb.append("\tTotal车位数："+getMaxParkPlaceNum()+"\n\tTotal空位数："+getAvailableParkNum()+"\n");
 		for(ParkingBoy parkBoy:parkingBoys){
 			sb.append(parkBoy.reportInfo());
 		}
-//		sb.append("\n+++++\n");
-//		sb.append("------ParkingManager报表 end---------------\n");
+
 		return sb.toString();
 	}
 }

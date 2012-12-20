@@ -8,7 +8,7 @@ import main.java.buaa.exception.NoPlaceException;
 
 
 /**
- * 
+ * 停车属性类
  * @author 康威
  */
 public class Park {
@@ -45,26 +45,19 @@ public class Park {
 				return parkPlace.getParkedCarList().remove(pp);
 			}
 		}
-		throw new NoCarException("没有此车 请拨打110！");
+		throw new NoCarException("找不到该辆车！");
 	}
 	public String reportInfo(){
-		/*
-		StringBuilder sb=new StringBuilder("\t------reportInfo beg---------------\n");
-		for (ParkPlace parkPlace : parkPlaceSet) {
-			sb.append("\t\t++停车场编号："+parkPlace.getParkNO()+"\t车位总数："+parkPlace.getMaxParkingNum()+"\t空位数："+parkPlace.getAvailableNum()+"\n");
-		}
-		sb.append("\t------reportInfo end---------------\n\n");
-		*/
 		StringBuilder sb=new StringBuilder();
 		for (ParkPlace parkPlace : parkPlaceSet) {
-			sb.append(parkPlace.toString()+"\n");
+			sb.append(parkPlace.toString());
 		}
 		return sb.toString();
 	}
 	/**
 	 * @return 获取总的停车位的总数
 	 */
-	public Integer getMaxParkingNum(){
+	public Integer getMaxParkPlaceNum(){
 		int count = 0;
 		for (ParkPlace pp : parkPlaceSet) {
 			count += pp.getMaxParkingNum();
@@ -72,21 +65,12 @@ public class Park {
 		return count;
 	}
 
-	public void print(){
-		int i=0;
-		System.out.println("======= begin =============");
-		for (ParkPlace parkPlace : parkPlaceSet) {
-			System.out.println((i++)+" GetAvailableNum:"+parkPlace.getAvailableNum());
-		}
-		System.out.println("======= end =============");
-	}
-	
 	/**
 	 * 获取空车位最多的停车场信息
 	 * @return
 	 */
 	public ParkPlace getMaxAvailableParkPlace(){
-		int index=0;
+
 		ParkPlace maxPP=null;
 		for (ParkPlace parkPlace : parkPlaceSet) {
 			if(maxPP==null){
@@ -101,9 +85,11 @@ public class Park {
 	}
 	
 	/**
-	 * 将车听到空车位最多的停车场，如果所有的停车场都没有空位子，将会抛出NoPlaceException异常信息
-	 * @param c
-	 * @return
+	 * 将车听到空车位最多的停车场
+	 * 如果所有的停车场都没有空位
+	 * 将会抛出NoPlaceException
+	 * @param Car
+	 * @return Ticket
 	 * @throws NoCarException
 	 * @throws NoPlaceException
 	 */

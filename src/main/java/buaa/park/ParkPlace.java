@@ -8,7 +8,7 @@ import main.java.buaa.exception.NoPlaceException;
 
 
 /**
- *   
+ *   停车场类
  * @author kangwei
  */
 public class ParkPlace {
@@ -19,11 +19,11 @@ public class ParkPlace {
     
     private Integer maxParkingNum;
     
-    private Integer parkNO;
+    private String parkName;
     
     
     public String toString(){
-    	return "停车场编号:"+this.parkNO+"\n\t车位数:"+this.maxParkingNum+"\n\t空位数:"+this.getAvailableNum();
+    	return "停车场编号:"+this.parkName+"\n\t\t车位数:"+this.maxParkingNum+"\n\t\t空位数:"+this.getAvailableNum();
     }
     
     /**
@@ -43,20 +43,20 @@ public class ParkPlace {
     }
     
     /**
-     * 
-     * @param maxParkingNum 最小值为2，如果取值小于等于2就会被设置成2
+     * 设置停车位
+     * @param maxParkingNum
      */
-    public ParkPlace(int maxParkingNum) {
-    	if(maxParkingNum<=2){
-    		 this.maxParkingNum = 2;
+    public ParkPlace(int maxParkingNum,String parkName) {
+    	if(maxParkingNum<=1){//不能小于1
+    		 this.maxParkingNum = 1;
     	}else{
     		 this.maxParkingNum = maxParkingNum;
     	}
-        this.parkNO=(++PARK_ID);
+        this.parkName=parkName;
     }
     
-    public Integer getParkNO(){
-    	return this.parkNO;
+    public String getParkName(){
+    	return this.parkName;
     }
  
     public Ticket parking(Car c)throws NoCarException,NoPlaceException{

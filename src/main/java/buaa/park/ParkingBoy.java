@@ -3,32 +3,25 @@ package main.java.buaa.park;
 import java.util.List;
 
 /**
- *  
+ *  停车仔类
  * @author 高强
  */
 public class ParkingBoy extends Park {
-	private static int ManagerID=0;
-	public static final String PARKING_BOY_FLAG="ParkingBoy_";
-	private int id;
-	public ParkingBoy(List<ParkPlace> parkPlaceList) {
+	
+	public String ParkingBoy;
+	
+	public ParkingBoy(List<ParkPlace> parkPlaceList,String ParkingBoy) {
 		super(parkPlaceList);
-		this.id=(++ManagerID);
+		this.ParkingBoy=ParkingBoy;
 	}
-	public int getID(){
-		return this.id;
-	}
-	public String getParkingRoleName() {
-		return PARKING_BOY_FLAG+this.id;
+	public String getParkingBoyName() {
+		return ParkingBoy;
 	}
 	public String reportInfo(){
-		/*
-		StringBuilder sb=new StringBuilder("------ParkingBoy报表 beg---------------\n");
-		sb.append("ParkingBoyName:"+getParkingRoleName()+"\t车位总数："+getMaxParkingNum()+"\t空位数："+getAvailableNum()+"\n");
+		StringBuilder sb=new StringBuilder("\n停车仔姓名："+getParkingBoyName()+"\n\t");
 		sb.append(super.reportInfo());
-		sb.append("------ParkingBoy报表 end---------------\n");
-		*/
-		StringBuilder sb=new StringBuilder("停车仔编号："+getParkingRoleName()+"\t车位总数："+getMaxParkingNum()+"\t空位数："+getAvailableParkNum()+"\n");
-		sb.append(super.reportInfo());
+		sb.append("\n\tTotal车位数："+getMaxParkPlaceNum()+
+				"\n\tTotal空位数："+getAvailableParkNum());
 		return sb.toString();
 	}
 }

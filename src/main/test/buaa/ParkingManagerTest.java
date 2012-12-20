@@ -18,33 +18,33 @@ import org.junit.Test;
 
 
 /**
- * @author kangwei
+ * 
+ * 停车经理类
+ * @author 徐飞飞
  */
 public class ParkingManagerTest {
 	
-	private ParkingManager parkManager;
+	private ParkingManager parkManager; 
 	
 	@Before
 	public void init(){
-		List<ParkPlace> managerParkList=new ArrayList<ParkPlace>();
-		managerParkList.add(new ParkPlace(12));
-		managerParkList.add(new ParkPlace(12));
-		
+		List<ParkPlace> mpl=new ArrayList<ParkPlace>();
+		mpl.add(new ParkPlace(4,"康车场1"));
+	
 		HashSet<ParkingBoy> parkingBoys=new HashSet<ParkingBoy>();
-		List<ParkPlace> parkPlaceListA=new ArrayList<ParkPlace>();
-		parkPlaceListA.add(new ParkPlace(12));
-		parkPlaceListA.add(new ParkPlace(12));
-		parkingBoys.add(new ParkingBoy(parkPlaceListA));
+		List<ParkPlace> ppl1=new ArrayList<ParkPlace>();
+		ppl1.add(new ParkPlace(5,"高车场1"));
+		parkingBoys.add(new ParkingBoy(ppl1,"高强"));
+	
+		List<ParkPlace> ppl2=new ArrayList<ParkPlace>();
+		ppl2.add(new ParkPlace(6,"徐车场1"));
+		parkingBoys.add(new ParkingBoy(ppl2,"徐飞飞"));
 		
-		List<ParkPlace> parkPlaceListB=new ArrayList<ParkPlace>();
-		parkPlaceListB.add(new ParkPlace(12));
-		parkPlaceListB.add(new ParkPlace(12));
-		parkingBoys.add(new ParkingBoy(parkPlaceListB));
-		
-		this.parkManager=new ParkingManager(managerParkList, parkingBoys);
+		this.parkManager=new ParkingManager(mpl, parkingBoys,"康威");
 	}
+	
 	@Test
-	public void report(){
+	public void pringInfo(){
 		Assert.assertNotNull(parkManager.reportInfo());
 		System.out.println(parkManager.reportInfo());
 	}
@@ -62,7 +62,8 @@ public class ParkingManagerTest {
 		Ticket proof=parkManager.parking(parkBoy, car);
 		Assert.assertEquals(car, parkBoy.getParkedCar(proof));
 	}
-	@Test(expected= NoCarException.class)
+	
+	@Test	(expected= NoCarException.class)
 	public void parking_boy_exception(){
 		HashSet<ParkingBoy> parkingBoys=parkManager.getParkingBoys();
 		ParkingBoy parkBoy=parkingBoys.iterator().next();
@@ -71,7 +72,7 @@ public class ParkingManagerTest {
 		Assert.assertEquals(car, parkManager.getParkedCar(proof));
 	}
 	
-	@Test(expected= NoCarException.class)
+	@Test	(expected= NoCarException.class)
 	public void parking_boy_noteq(){
 		HashSet<ParkingBoy> parkingBoys=parkManager.getParkingBoys();
 		ParkingBoy[] parkBoy=new ParkingBoy[1];
