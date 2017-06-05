@@ -40,6 +40,7 @@ public class Park {
 	}
 	
 	public Car getParkedCar(Ticket pp) throws NoCarException {
+		System.out.println("22");
 		for (ParkPlace parkPlace : parkPlaceSet) {
 			if (parkPlace.getParkedCarList().containsKey(pp)) {
 				return parkPlace.getParkedCarList().remove(pp);
